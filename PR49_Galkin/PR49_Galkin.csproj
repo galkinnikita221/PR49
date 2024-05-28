@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>F:\Praktiki\PR49\PR49_Galkin\PR49_Galkin\API_Galkin.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
