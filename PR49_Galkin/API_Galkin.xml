@@ -4,5 +4,92 @@
         <name>PR49_Galkin</name>
     </assembly>
     <members>
+        <member name="M:PR49_Galkin.Context.DishesContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Переопределяем метод конфигурации
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:PR49_Galkin.Context.OrderContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Переопределение
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:PR49_Galkin.Context.UsersContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Переопределение
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:PR49_Galkin.Context.VersionContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Переопределение
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="M:PR49_Galkin.Controllers.DishesControllers.List(System.Int32)">
+            <summary>
+            Получение списка блюд
+            </summary>
+            <param name="Version">Версия блюда</param>
+            <remarks>Данный метод получает список блюд, находящийся в базе данных</remarks>
+            <response code="200">Список успешно получен</response>
+            <response code="400">Проблемы при запросе</response>
+        </member>
+        <member name="M:PR49_Galkin.Controllers.OrderControllers.AddOrders(System.String,System.DateTime,System.Int32,System.Int32,System.String)">
+            <summary>
+            Отправить заказ
+            </summary>
+            <param name="Address">Введенный адрес</param>
+            <param name="Date">Введенная дата</param>
+            <param name="DishId">Введенное блюдо</param>
+            <param name="Count">Введенное количество</param>
+            <param name="Token">Токен пользователя</param>
+            <returns>Метод для отправки заказа</returns>
+            <response code="200">Заказ принят</response>
+            <response code="400">Проблемы при запросе</response>
+            <response code="401">Неавторизованный пользователь</response>
+        </member>
+        <member name="M:PR49_Galkin.Controllers.OrderControllers.Hist">
+            <summary>
+            Получение истории заказов
+            </summary>
+            <remarks>Данный метод получает историю заказов, находящийся в базе данных</remarks>
+            <response code="200">Список успешно получен</response>
+            <response code="400">Проблемы при запросе</response>
+            <response code="401">Неавторизованный доступ</response>
+        </member>
+        <member name="M:PR49_Galkin.Controllers.UserControllers.Login(System.String,System.String)">
+            <summary>
+            Авторизация пользователя
+            </summary>
+            <param name="Email">Логин</param>
+            <param name="Password">Пароль</param>
+            <returns>Авторизация пользователей на сайте</returns>
+            <response code="200">Пользователь успешно авторизован</response>
+            <response code="400">Проблема аутентификации</response>
+            <response code="401">Пользователь не найден</response>
+        </member>
+        <member name="M:PR49_Galkin.Controllers.UserControllers.RegIn(System.String,System.String,System.String,System.String)">
+            <summary>
+            Регистрация нового пользователя
+            </summary>
+            <param name="Email">Почта</param>
+            <param name="Login">Логин</param>
+            <param name="Password">Пароль</param>
+            <param name="Token">Токен уже зарегистрированного пользователя</param>
+            <returns>Регистрация пользователей на сайте</returns>
+            <response code="200">Успешная регистрация</response>
+            <response code="400">Проблемы при регистрации</response>
+        </member>
+        <member name="M:PR49_Galkin.Controllers.VersionController.List">
+            <summary>
+            Получение списка версий
+            </summary>
+            <remarks>Метод получает список версий из базы данных</remarks>
+            <response code="200">Список успешно получен</response>
+            <response code="400">Проблемы при запросе</response>
+        </member>
     </members>
 </doc>

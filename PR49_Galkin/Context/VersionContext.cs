@@ -5,7 +5,7 @@ namespace PR49_Galkin.Context
 {
     public class VersionContext : DbContext
     {
-        public DbSet<Versiya> Versiyas { get; set; }
+        public DbSet<Versiyas> Versiyas { get; set; }
         public VersionContext() { 
             Database.EnsureCreated();
             Versiyas.Load();

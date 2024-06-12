@@ -2,7 +2,7 @@
 
 namespace PR49_Galkin.Model
 {
-    public class Oders
+    public class Order
     {
         public int Id { get; set; }
         public string Address { get; set; }

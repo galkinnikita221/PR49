@@ -5,11 +5,11 @@ namespace PR49_Galkin.Context
 {
     public class OrderContext : DbContext
     {
-        public DbSet<Oders> Oders { get; set; }
+        public DbSet<Order> Order { get; set; }
         public OrderContext()
         {
             Database.EnsureCreated();
-            Oders.Load();   
+            Order.Load();   
         }
         /// <summary>
         /// Переопределение

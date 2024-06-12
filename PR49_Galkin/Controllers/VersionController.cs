@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using PR49_Galkin.Model;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using PR49_Galkin.Context;
+using PR49_Galkin.Model;
 
 namespace PR49_Galkin.Controllers
 {
@@ -17,13 +20,13 @@ namespace PR49_Galkin.Controllers
         /// <response code="400">Проблемы при запросе</response>
         [Route("List")]
         [HttpGet]
-        [ProducesResponseType(typeof(List<Versiya>) 200)]
+        [ProducesResponseType(typeof(List<Model.Versiyas>), 200)]
         [ProducesResponseType(400)]
         public ActionResult List()
         {
             try
             {
-                IEnumerable<Versiya> versiyas = new VersionContext().Versions;
+                IEnumerable<Model.Versiyas> versiyas = new VersionContext().Versiyas;
                 return Json(versiyas);
             }
             catch

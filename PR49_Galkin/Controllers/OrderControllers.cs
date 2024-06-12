@@ -38,12 +38,12 @@ namespace PR49_Galkin.Controllers
             try
             {
                 var order = new OrderContext();
-                var findToken = new UserContext();
+                var findToken = new UsersContext();
                 if (order.Order.FirstOrDefault(x => x.Address == Address && x.Date == Date && x.DishId == DishId && x.Count == Count) != null) return StatusCode(400);
-                if (findToken.Users.FirstOrDefault(x => x.Token == Token == null) == null) return StatusCode(400, "Токен не существует.");
+                if (findToken.User.FirstOrDefault(x => x.Token == Token) == null) return StatusCode(400, "Токен не существует.");
                 else
                 {
-                    Model.Oders order2 = new Oders()
+                    Model.Order order2 = new Order()
                     {
                         Address = Address,
                         Date = Date,
@@ -70,13 +70,13 @@ namespace PR49_Galkin.Controllers
         /// <response code="401">Неавторизованный доступ</response>
         [Route("History")]
         [HttpGet]
-        [ProducesResponseType(typeof(List<Oders>), 200)]
+        [ProducesResponseType(typeof(List<Order>), 200)]
         [ProducesResponseType(400)]
         public ActionResult Hist()
         {
             try
             {
-                IEnumerable<Oders> order = new OrderContext().Order;
+                IEnumerable<Order> order = new OrderContext().Order;
                 return Json(order);
             }
             catch

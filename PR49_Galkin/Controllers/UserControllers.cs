@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PR49_Galkin.Context;
 using PR49_Galkin.Model;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ namespace PR49_Galkin.Controllers
         /// </summary>
         /// <param name="Email">Логин</param>
         /// <param name="Password">Пароль</param>
-        /// <param name="Token">Токен пользователя</param>
         /// <returns>Авторизация пользователей на сайте</returns>
         /// <response code="200">Пользователь успешно авторизован</response>
         /// <response code="400">Проблема аутентификации</response>
@@ -26,12 +26,12 @@ namespace PR49_Galkin.Controllers
         [ProducesResponseType(typeof(User), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(401)]
-        public ActionResult Login([FromForm] string Email, [FromForm] string Password, [FromForm] string Token)
+        public ActionResult Login([FromForm] string Email, [FromForm] string Password)
         {
-            if (Email == null || Password == null || Token == null) return StatusCode(400);
+            if (Email == null || Password == null) return StatusCode(400);
             try
             {
-                User users = new UsersContext().Users.First(x => x.Email == Email && x.Password == Password && x.Token == Token);
+                User users = new UsersContext().User.First(x => x.Email == Email && x.Password == Password);
                 return Json(users.Token);
             }
             catch
@@ -60,8 +60,8 @@ namespace PR49_Galkin.Controllers
             try
             {
                 var newUser = new UsersContext();
-                if (newUser.Users.FirstOrDefault(x => x.Email == Email && x.Login == Login && x.Password == Password) != null) return StatusCode(400);
-                if (newUser.Users.FirstOrDefault(x => x.Token == Token) == null) return StatusCode(400, "Такого токена нету!");
+                if (newUser.User.FirstOrDefault(x => x.Email == Email && x.Login == Login && x.Password == Password) != null) return StatusCode(400);
+                if (newUser.User.FirstOrDefault(x => x.Token == Token) == null) return StatusCode(400, "Такого токена нету!");
                 else
                 {
                     User User = new User()
@@ -71,7 +71,7 @@ namespace PR49_Galkin.Controllers
                         Password = Password,
                         Token = GenerateToken()
                     };
-                    newUser.Users.Add(User);
+                    newUser.User.Add(User);
                     newUser.SaveChanges();
                     return Json(newUser);
                 }

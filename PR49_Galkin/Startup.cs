@@ -22,8 +22,26 @@ namespace PR49_Galkin
                 c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Руководство для пользования запросов",
-                    Description = "Полное руководство для использования запросов находящихся в проекте"
+                    Title = "Авторизация",
+                    Description = "Авторизация и регистрация пользователей"
+                });
+                c.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v2",
+                    Title = "Версии",
+                    Description = "Получение списка версий"
+                });
+                c.SwaggerDoc("v3", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v3",
+                    Title = "Блюда",
+                    Description = "Получение блюд из базы"
+                });
+                c.SwaggerDoc("v4", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version = "v4",
+                    Title = "Заказы",
+                    Description = "Отправка заказов и получение истории заказов"
                 });
                 var filePath = Path.Combine(System.AppContext.BaseDirectory, "API_Galkin.xml");
                 c.IncludeXmlComments(filePath);
@@ -36,7 +54,10 @@ namespace PR49_Galkin
             app.UseMvcWithDefaultRoute();
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Запросы GET");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Авторизация");
+                c.SwaggerEndpoint("/swagger/v2/swagger.json", "Версии");
+                c.SwaggerEndpoint("/swagger/v3/swagger.json", "Блюда");
+                c.SwaggerEndpoint("/swagger/v4/swagger.json", "Заказы");
             });
         }
     }
